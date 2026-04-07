@@ -22,8 +22,18 @@ def read_financial_transactions_from_excel(path: str) -> pd.DataFrame:
         transactions = pd.read_excel(path)
         logger.info("Возвращаем объект DataFrame.")
         return transactions
-    except (FileNotFoundError, ValueError) as ex:
-        logger.error(f"Произошла ошибка: {ex}")
+    except FileNotFoundError as ex:
+        error_msg = f"Файл не найден: {path}. Ошибка: {ex}"
+        logger.error(error_msg)
+        raise FileNotFoundError(error_msg) from ex
+    except ValueError as ex:
+        error_msg = f"Ошибка формата данных в файле {path}: {ex}"
+        logger.error(error_msg)
+        raise ValueError(error_msg) from ex
+    except Exception as ex:
+        error_msg = f"Неизвестная ошибка при чтении файла {path}: {ex}"
+        logger.error(error_msg)
+        raise Exception(error_msg) from ex
 
 
 if __name__ == "__main__":
