@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import pandas as pd
 import pytest
 
@@ -23,4 +25,29 @@ def create_test_dataframe() -> pd.DataFrame:
 
 @pytest.fixture
 def empty_dataframe():
+    """Пустой DataFrame с финансовыми данными."""
     return pd.DataFrame(columns=["Дата операции", "Категория", "Кэшбэк", "Описание", "Сумма операции с округлением"])
+
+
+@pytest.fixture
+def sample_transactions_df():
+    """Фикстура с тестовыми транзакциями."""
+    data = {
+        'Дата операции': [
+            '01.12.2021 10:00:00',
+            '02.12.2021 15:30:00',
+            '03.12.2021 09:15:00',
+            '04.12.2021 18:45:00',
+            '05.12.2021 12:20:00',
+            '06.12.2021 14:10:00',
+            '07.12.2021 16:35:00'
+        ],
+        'Сумма операции с округлением': [100.0, 200.0, 150.0, 300.0, 250.0, 400.0, 500.0]
+    }
+    return pd.DataFrame(data)
+
+
+@pytest.fixture
+def reference_date():
+    """Фикстура для даты отсчёта."""
+    return datetime(2021, 12, 31)
