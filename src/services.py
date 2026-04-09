@@ -37,7 +37,7 @@ def get_most_profitable_cashback(data: str, month: str | int, year: str | int) -
 
         logger.info("Проверяем, что есть данные за указанный период.")
         if filtered_data.empty:
-            return json.dumps({"message": "Нет данных за указанный период"}, ensure_ascii=False, indent=2)
+            return json.dumps({"message": "Нет данных за указанный период"}, ensure_ascii=False, indent=4)
 
         logger.info("Группируем данные по заданным параметрам и находим их сумму.")
         cashback_grouped = filtered_data.groupby("Категория")["Кэшбэк"].sum()
@@ -45,12 +45,12 @@ def get_most_profitable_cashback(data: str, month: str | int, year: str | int) -
         sum_cashback_sorted = cashback_grouped.sort_values(ascending=False)
 
         logger.info("Преобразуем сгруппированные и отсортированные данные из файла в формат JSON")
-        cashback_data = json.dumps(sum_cashback_sorted.to_dict(), ensure_ascii=False, indent=2)
+        cashback_data = json.dumps(sum_cashback_sorted.to_dict(), ensure_ascii=False, indent=4)
         return cashback_data
 
     except Exception as e:
         logger.error(f"Произошла ошибка: {e}")
-        return json.dumps({"Ошибка данных": str(e)}, ensure_ascii=False, indent=2)
+        return json.dumps({"Ошибка данных": str(e)}, ensure_ascii=False, indent=4)
 
 
 def finds_transfers(data: str, month: str | int, year: str | int) -> dict | str:
@@ -74,7 +74,7 @@ def finds_transfers(data: str, month: str | int, year: str | int) -> dict | str:
 
         logger.info("Проверяем, что есть данные за указанный период.")
         if filtered_data.empty:
-            return json.dumps({"message": "Нет данных за указанный период"}, ensure_ascii=False, indent=2)
+            return json.dumps({"message": "Нет данных за указанный период"}, ensure_ascii=False, indent=4)
 
         logger.info("Фильтруем данные по заданному критерию.")
         pattern = r"^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\.$"
@@ -84,7 +84,7 @@ def finds_transfers(data: str, month: str | int, year: str | int) -> dict | str:
         logger.info("Проверяем, что есть переводы за указанный период.")
         if person_transfers.empty:
             return json.dumps({"message": "Нет переводов физлицам за указанный период"},
-                              ensure_ascii=False, indent=2)
+                              ensure_ascii=False, indent=4)
 
         logger.info("Группируем данные по заданным параметрам и находим их сумму.")
         transfers_grouped = person_transfers.groupby("Описание")["Сумма операции с округлением"].sum()
@@ -92,12 +92,12 @@ def finds_transfers(data: str, month: str | int, year: str | int) -> dict | str:
         sum_transfers_sorted = transfers_grouped.sort_values(ascending=False)
 
         logger.info("Преобразуем сгруппированные и отсортированные данные из файла в формат JSON")
-        transfer_data = json.dumps(sum_transfers_sorted.to_dict(), ensure_ascii=False, indent=2)
+        transfer_data = json.dumps(sum_transfers_sorted.to_dict(), ensure_ascii=False, indent=4)
         return transfer_data
 
     except Exception as e:
         logger.error(f"Произошла ошибка: {e}")
-        return json.dumps({"Ошибка данных": str(e)}, ensure_ascii=False, indent=2)
+        return json.dumps({"Ошибка данных": str(e)}, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
