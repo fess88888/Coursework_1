@@ -83,8 +83,7 @@ def finds_transfers(data: str, month: str | int, year: str | int) -> dict | str:
 
         logger.info("Проверяем, что есть переводы за указанный период.")
         if person_transfers.empty:
-            return json.dumps({"message": "Нет переводов физлицам за указанный период"},
-                              ensure_ascii=False, indent=4)
+            return json.dumps({"message": "Нет переводов физлицам за указанный период"}, ensure_ascii=False, indent=4)
 
         logger.info("Группируем данные по заданным параметрам и находим их сумму.")
         transfers_grouped = person_transfers.groupby("Описание")["Сумма операции с округлением"].sum()

@@ -68,7 +68,6 @@ def test_weekday_names_mapping(weekday_num, expected_day_name):
 
 def test_average_calculation_accuracy(sample_transactions_df):
     """Тест точности расчёта средних значений."""
-    # Создаём данные, где мы точно знаем ожидаемый результат
     test_data = {
         'Дата операции': [
             '01.12.2021 10:00:00',
