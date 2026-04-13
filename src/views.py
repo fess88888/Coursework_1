@@ -1,10 +1,9 @@
 import logging
 import os
+from datetime import date
+from typing import Any, Dict, List
 
 import pandas as pd
-from typing import List, Dict, Any
-from datetime import date
-
 
 logger = logging.getLogger("views")
 logger.setLevel(logging.INFO)
@@ -38,7 +37,7 @@ def filter_transactions_by_date(transactions: pd.DataFrame, start_date: date, en
 def get_card_info(transactions_df: pd.DataFrame, start_date: date, end_date: date) -> List[Dict]:
     """
     Функция, которая получает информацию по картам из DataFrame с транзакциями и
-    возвращает список словарей с информацией по каждой карте
+    возвращает список словарей с информацией по каждой карте.
     """
     logger.info("Фильтруем транзакции по дате")
     transactions_df["Дата операции"] = pd.to_datetime(transactions_df["Дата операции"], format="%d.%m.%Y %H:%M:%S")

@@ -1,11 +1,12 @@
 import json
 import logging
 import os
-import requests
 import time
+from datetime import date, datetime
+from typing import Dict, List
+
 import pandas as pd
-from datetime import datetime, date
-from typing import List, Dict
+import requests
 from dotenv import load_dotenv
 
 load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))

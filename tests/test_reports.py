@@ -1,11 +1,11 @@
-from unittest import mock
-
-import pytest
-import pandas as pd
 from datetime import datetime
+from unittest import mock
 from unittest.mock import patch
 
-from src.reports import spending_by_weekday, WEEKDAY_NAMES
+import pandas as pd
+import pytest
+
+from src.reports import WEEKDAY_NAMES, spending_by_weekday
 
 
 @pytest.mark.parametrize("input_date,expected_days_count", [
